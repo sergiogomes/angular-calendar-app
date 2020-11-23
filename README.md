@@ -2,6 +2,8 @@
 
 Angular Calendar App.
 
+[![time tracker](https://wakatime.com/badge/github/sergiogomes/angular-calendar-app.svg)](https://wakatime.com/badge/github/sergiogomes/angular-calendar-app)
+
 ## Mandatory Features
 
 - Ability to add a new "reminder" (max 30 chars) for a user entered day and time. Also, include a city.
@@ -16,6 +18,8 @@ Angular Calendar App.
 - Expand the calendar to support more than the current month.
 - Properly handle overflow when multiple reminders appear on the same date.
 - Functionality to delete one or ALL the reminders for a specific day.
+
+## Angular CLI
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.1.1.
 
