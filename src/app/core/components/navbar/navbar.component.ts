@@ -2,9 +2,6 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Subscription } from 'rxjs/internal/Subscription';
 
-import { SearchService } from 'src/app/search/services';
-import { QueryParams } from '../../models';
-
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
@@ -17,7 +14,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   constructor(
     private router: Router,
-    private service: SearchService,
     private route: ActivatedRoute
   ) { }
 
@@ -29,7 +25,7 @@ export class NavbarComponent implements OnInit, OnDestroy {
 
   // Change to Search screen
   public onSearch(): void {
-    const objQueryParams: QueryParams = {
+    const objQueryParams = {
       q: this.searchText,
       page: 1
     };
@@ -38,7 +34,6 @@ export class NavbarComponent implements OnInit, OnDestroy {
       this.router.navigate(['/search'], {
         queryParams: objQueryParams
       });
-      this.service.searchChanged$.next(objQueryParams);
     }
   }
 
