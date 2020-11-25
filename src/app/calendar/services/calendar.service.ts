@@ -1,4 +1,6 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/internal/Observable';
+import { Subject } from 'rxjs/internal/Subject';
 
 import { ItemGrid } from '../models';
 
@@ -7,11 +9,12 @@ import { ItemGrid } from '../models';
 })
 export class CalendarService {
 
-
+  public selectedDay: number;
   public currentYear: number;
   public currentMonth: number;
   public currentDay: number;
   public currentHour: number;
+
   public weekDays = [
     { id: 0, letter: 'S', threeWord: 'Sun', day: 'Sunday' },
     { id: 1, letter: 'M', threeWord: 'Mon', day: 'Monday' },
@@ -38,9 +41,14 @@ export class CalendarService {
   public grid: ItemGrid[] = [];
   public days: any;
 
+  public calendar$: Subject<boolean> = new Subject<boolean>();
+  get eventcalendarChanged(): Observable<any> {
+    return this.calendar$.asObservable();
+  }
+
   constructor() { }
 
-  public getDaysInMonth(month: number, year: number) {
-    return new Date(year, month+1, 0).getDate();
+  public getDaysInMonth(month: number, year: number): number {
+    return new Date(year, month + 1, 0).getDate();
   }
 }

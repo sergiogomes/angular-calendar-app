@@ -3,24 +3,4 @@
   <h2>{{ service.months[service.currentMonth] }} {{ service.currentYear }}</h2>
 </section>
 
-<ul class="list-group list-group-horizontal flex-wrap justify-center">
-  <li class="list-group-item perc-14 text-center" *ngFor="let weekDay of service.weekDays">
-    <div class="week-day-sm">
-      {{ weekDay.letter }}
-    </div>
-    <div class="week-day-md">
-      {{ weekDay.threeWord }}
-    </div>
-    <div class="week-day-lg">
-      {{ weekDay.day }}
-    </div>
-  </li>
-</ul>
-
-<ul class="list-group list-group-horizontal flex-wrap justify-center">
-  <li class="list-group-item perc-14 text-center grid-height btn btn-light" *ngFor="let day of service.grid">
-    <div *ngIf="day.monthDay" [ngClass]="day.monthDay === service.currentDay ? 'current-day' : ''">
-      {{day.monthDay}}
-    </div>
-  </li>
-</ul>
+<app-grid></app-grid>
