@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { isBreakOrContinueStatement } from 'typescript';
 
-import { CalendarService } from './calendar.service';
 import { ItemGrid } from './models';
+import { CalendarService } from './services';
 
 @Component({
   selector: 'app-calendar',
@@ -11,37 +10,7 @@ import { ItemGrid } from './models';
 })
 export class CalendarComponent implements OnInit {
 
-  public weekDays = [
-    { id: 0, letter: 'S', threeWord: 'Sun', day: 'Sunday' },
-    { id: 1, letter: 'M', threeWord: 'Mon', day: 'Monday' },
-    { id: 2, letter: 'T', threeWord: 'Tue', day: 'Tuesday' },
-    { id: 3, letter: 'W', threeWord: 'Wed', day: 'Wednesday' },
-    { id: 4, letter: 'T', threeWord: 'Thu', day: 'Thursday' },
-    { id: 5, letter: 'F', threeWord: 'Fri', day: 'Friday' },
-    { id: 6, letter: 'S', threeWord: 'Sat', day: 'Saturday' }
-  ];
-  public months = [
-    'January',
-    'February',
-    'March',
-    'April',
-    'May',
-    'June',
-    'July',
-    'August',
-    'September',
-    'October',
-    'November',
-    'December'
-  ];
-  public currentYear: number;
-  public currentMonth: number;
-  public currentDay: number;
-  public currentHour: number;
-
-  public grid: ItemGrid[] = [];
-
-  constructor(private service: CalendarService) { }
+  constructor(public service: CalendarService) { }
 
   ngOnInit(): void {
     this.initializeDates();
@@ -54,18 +23,19 @@ export class CalendarComponent implements OnInit {
     const year = date.getFullYear();
 
     const monthDays = this.service.getDaysInMonth(month, year);
-    const weekDay = this.weekDays[date.getDay()];
+    const weekDay = this.service.weekDays[date.getDay()];
 
     const firstDate = new Date(year, month, 1);
     const lastDate = new Date(year, month + 1, 0);
 
-    const weekFirstDay = this.weekDays[firstDate.getDay()];
-    const weekLastDay = this.weekDays[lastDate.getDay()];
+    const weekFirstDay = this.service.weekDays[firstDate.getDay()];
+    const weekLastDay = this.service.weekDays[lastDate.getDay()];
 
-    this.currentYear = year;
-    this.currentMonth = month;
+    this.service.currentYear = year;
+    this.service.currentMonth = month;
+    this.service.currentDay = date.getDate();
 
-    this.createStructure(this.weekDays.length, weekFirstDay.id);
+    this.createStructure(this.service.weekDays.length, weekFirstDay.id);
     this.fillMonthDays(weekFirstDay.id, monthDays);
   }
 
@@ -79,7 +49,7 @@ export class CalendarComponent implements OnInit {
     }
 
     for (let i = 0; i < limit; i ++) {
-      this.grid.push({
+      this.service.grid.push({
         id: i,
         week: Math.floor(i / weekDays),
         weekDay: i % weekDays,
@@ -91,7 +61,7 @@ export class CalendarComponent implements OnInit {
   private fillMonthDays(weekFirstDay: number, monthDays: number): void {
     let countBegan: boolean;
     let dayCount = weekFirstDay;
-    for (const item of this.grid) {
+    for (const item of this.service.grid) {
       if (dayCount === weekFirstDay) {
         countBegan = true;
       }
