@@ -1,6 +1,10 @@
 
+<section>
+  <h2>{{ months[currentMonth] }} {{ currentYear }}</h2>
+</section>
+
 <ul class="list-group list-group-horizontal flex-wrap justify-center">
-  <li class="list-group-item perc-14 text-center" *ngFor="let weekDay of days">
+  <li class="list-group-item perc-14 text-center" *ngFor="let weekDay of weekDays">
     <div class="week-day-sm">
       {{ weekDay.letter }}
     </div>
@@ -15,5 +19,8 @@
 
 <ul class="list-group list-group-horizontal flex-wrap justify-center">
   <li class="list-group-item perc-14 text-center grid-height" *ngFor="let day of grid">
+    <div *ngIf="day.monthDay">
+      {{day.monthDay}}
+    </div>
   </li>
 </ul>
