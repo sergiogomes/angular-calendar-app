@@ -4,12 +4,14 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core';
-import { CalendarComponent } from './calendar/calendar.component';
+import { CalendarComponent } from './calendar';
+import { HomeComponent } from './home';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CalendarComponent
+    CalendarComponent,
+    HomeComponent
   ],
   imports: [
     CoreModule,
