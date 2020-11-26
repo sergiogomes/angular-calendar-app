@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { CoreModule } from './core';
-import { CalendarComponent, GridComponent } from './calendar';
+import { CalendarComponent, GridComponent, InfoComponent } from './calendar';
 import { HomeComponent } from './home';
 
 @NgModule({
@@ -12,7 +12,8 @@ import { HomeComponent } from './home';
     AppComponent,
     CalendarComponent,
     HomeComponent,
-    GridComponent
+    GridComponent,
+    InfoComponent
   ],
   imports: [
     CoreModule,
