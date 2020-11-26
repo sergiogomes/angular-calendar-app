@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/internal/Subscription';
 
 import { ItemGrid } from './models';
 import { CalendarService } from './services';
@@ -8,12 +9,23 @@ import { CalendarService } from './services';
   templateUrl: './calendar.component.html',
   styleUrls: ['./calendar.component.scss']
 })
-export class CalendarComponent implements OnInit {
+export class CalendarComponent implements OnInit, OnDestroy {
+
+  public sideBarOpened: boolean;
+
+  private calendarSub: Subscription;
 
   constructor(public service: CalendarService) { }
 
   ngOnInit(): void {
     this.initializeDates();
+    this.calendarSub = this.service.eventcalendarChanged.subscribe((item: ItemGrid) => {
+      if (item) {
+        this.sideBarOpened = true;
+      } else {
+        this.sideBarOpened = false;
+      }
+    });
   }
 
   // initialize date variables
@@ -39,7 +51,7 @@ export class CalendarComponent implements OnInit {
     this.fillMonthDays(weekFirstDay.id, monthDays);
   }
 
-  // create 42 grid squares for the calendar
+  // create 42 or 35 grid squares for the calendar
   private createStructure(weekDays: number, weekFirstDay: number): void {
     let limit: number;
     if (weekFirstDay === 6 || weekFirstDay === 7) {
@@ -74,5 +86,15 @@ export class CalendarComponent implements OnInit {
         break;
       }
     }
+  }
+
+  public closeSideBar(): void {
+    this.service.calendar$.next(false);
+    this.service.selectedDay = undefined;
+    this.sideBarOpened = false;
+  }
+
+  ngOnDestroy(): void {
+    this.calendarSub.unsubscribe();
   }
 }

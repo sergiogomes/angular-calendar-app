@@ -1,7 +1,8 @@
-
 <ng-container *ngIf="showInfo">
   <ng-container *ngIf="!showForm">
-    <button type="button" class="btn btn-sm btn-info" (click)="addInfo()">Add</button>
+    <button type="button" class="btn btn-sm btn-info btn-block" (click)="addInfo()">
+      New Event
+    </button>
   </ng-container>
   <ng-container *ngIf="showForm">
     <form [formGroup]="infoForm" (submit)="create($event)">
@@ -50,6 +51,4 @@
       <button type="submit" class="btn btn-info btn-block">Save</button>
     </form>
   </ng-container>
-  {{ info.id }}
-  {{ info.monthDay }}
 </ng-container>

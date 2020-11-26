@@ -20,7 +20,8 @@ import { HomeComponent } from './home';
     CoreModule,
     BrowserModule,
     AppRoutingModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    // Compiler,
   ],
   providers: [],
   bootstrap: [AppComponent]

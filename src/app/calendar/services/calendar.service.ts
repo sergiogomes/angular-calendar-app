@@ -41,7 +41,7 @@ export class CalendarService {
   public grid: ItemGrid[] = [];
   public days: any;
 
-  public calendar$: Subject<ItemGrid> = new Subject<ItemGrid>();
+  public calendar$: Subject<ItemGrid | boolean> = new Subject<ItemGrid | boolean>();
   get eventcalendarChanged(): Observable<any> {
     return this.calendar$.asObservable();
   }

@@ -22,8 +22,12 @@
     <div *ngIf="day.monthDay" [ngClass]="day.monthDay === service.currentDay ? 'current-day' : ''">
       {{ day.monthDay }}
     </div>
-    <div *ngFor="let info of day.events">
-      <span>{{ info.color }}</span><span>{{ info.title }}</span><span>{{ info.hour }}</span>
+    <div *ngFor="let info of day.events" class="d-flex">
+      <span>
+        <div [ngStyle]="{'background-color': info.color ? info.color : 'white' }" class="circle"></div>
+      </span>
+      <span>{{ info.title }}</span>
+      <span>{{ info.hour }}</span>
     </div>
   </li>
 </ul>
