@@ -14,7 +14,7 @@
 </ul>
 
 <ul class="list-group list-group-horizontal flex-wrap justify-center">
-  <li class="list-group-item perc-14 grid-height btn btn-light list-padding"
+  <li class="list-group-item perc-14 grid-height btn btn-light list-padding overflow-auto"
     *ngFor="let day of service.grid"
     (click)="selectDay(day)"
     [ngClass]="getClass(day)"
