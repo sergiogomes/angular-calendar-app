@@ -19,9 +19,10 @@
     (click)="selectDay(day)"
     [ngClass]="getClass(day)"
     >
-    <div *ngIf="day.monthDay" class="text-right"
-      [ngClass]="day.monthDay === service.currentDay ? 'current-day' : ''">
-      {{ day.monthDay }}
+    <div *ngIf="day.monthDay" class="text-right d-grid justify-end">
+      <div [ngClass]="day.monthDay === service.currentDay ? 'current-day' : ''">
+        {{ day.monthDay }}
+      </div>
     </div>
     <div *ngFor="let info of day.events" class="d-flex text-left justify-between">
       <span>

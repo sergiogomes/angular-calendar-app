@@ -54,6 +54,8 @@ export class InfoComponent implements OnInit, OnDestroy {
   public create($event: HTMLFormElement): void {
     $event.preventDefault();
 
+    if (this.infoForm.valid) { return; }
+
     const id = this.service.getIdByDate(new Date());
     const monthDay = this.info.monthDay;
 

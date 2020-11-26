@@ -54,6 +54,14 @@
   justify-content: space-between;
 }
 
+.justify-end {
+  justify-content: end;
+}
+
+.d-grid {
+  display: grid;
+}
+
 .grid-height {
   min-height: 50px;
 }
