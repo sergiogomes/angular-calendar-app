@@ -53,7 +53,8 @@ export class CalendarComponent implements OnInit {
         id: i,
         week: Math.floor(i / weekDays),
         weekDay: i % weekDays,
-        monthDay: 0
+        monthDay: 0,
+        events: []
       });
     }
   }

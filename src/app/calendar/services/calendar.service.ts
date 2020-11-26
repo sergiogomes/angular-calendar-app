@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
 
-import { ItemGrid } from '../models';
+import { Info, ItemGrid } from '../models';
 
 @Injectable({
   providedIn: 'root'
@@ -50,5 +50,33 @@ export class CalendarService {
 
   public getDaysInMonth(month: number, year: number): number {
     return new Date(year, month + 1, 0).getDate();
+  }
+
+  public getIdByDate(date: Date): number {
+    let id: string;
+
+    id = String(date.getFullYear())
+        + this.lpad(String(date.getMonth() + 1), 2, '0')
+        + this.lpad(String(date.getDate()), 2, '0')
+        + this.lpad(String(date.getHours()), 2, '0')
+        + this.lpad(String(date.getMinutes()), 2, '0')
+        + this.lpad(String(date.getSeconds()), 2, '0');
+
+    return Number(id);
+  }
+
+  private lpad(text: string, size: number, compl: string): string {
+    const arr = text.split('');
+    while (arr.length < size) {
+      arr.unshift(compl);
+    }
+    return arr.join('');
+  }
+
+  public createEvent(infoEvent: Info): void {
+    const gridIndex = this.grid.findIndex((grid) => grid.monthDay === infoEvent.monthDay);
+    if (gridIndex > -1) {
+      this.grid[gridIndex].events.push(infoEvent);
+    }
   }
 }

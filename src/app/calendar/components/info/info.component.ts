@@ -22,7 +22,8 @@ export class InfoComponent implements OnInit, OnDestroy {
     hour: new FormControl('', Validators.required),
     color: new FormControl(''),
     description: new FormControl(''),
-    id: new FormControl('')
+    id: new FormControl(''),
+    monthDay: new FormControl('')
   };
 
   private calendarSub: Subscription;
@@ -43,18 +44,6 @@ export class InfoComponent implements OnInit, OnDestroy {
         this.info = new ItemGrid();
       }
     });
-    // this.createForm(new Info());
-  }
-
-  private createForm(info: Info): void {
-    this.infoForm = this.formBuilder.group({
-      title: [info.title],
-      description: [info.description],
-      color: [info.color],
-      hour: [info.hour],
-      id: [info.id],
-      monthDay: [info.monthDay],
-    });
   }
 
   public addInfo(): void {
@@ -63,9 +52,14 @@ export class InfoComponent implements OnInit, OnDestroy {
 
   public create($event: HTMLFormElement): void {
     $event.preventDefault();
-    const id = new Date();
-    this.infoForm.patchValue({ id });
-    console.log(this.infoForm.value);
+
+    const id = this.service.getIdByDate(new Date());
+    const monthDay = this.info.monthDay;
+
+    this.infoForm.patchValue({ id, monthDay });
+
+    this.service.createEvent(this.infoForm.value);
+    this.infoForm.reset();
   }
 
   ngOnDestroy(): void {
