@@ -83,14 +83,14 @@ export class CalendarComponent implements OnInit, OnDestroy {
         item.events = [{
           title: 'Interview',
           color: 'lightblue',
-          description: 'test',
+          description: 'Interview description.',
           hour: '09:30',
           monthDay: item.monthDay,
           id: 20201126010000
         }, {
           title: 'Second Interview',
           color: 'coral',
-          description: 'test',
+          description: '',
           hour: '02:30',
           monthDay: item.monthDay,
           id: 20201126011000

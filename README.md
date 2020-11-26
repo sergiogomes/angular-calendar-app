@@ -4,6 +4,8 @@ Angular Calendar App.
 
 [![time tracker](https://wakatime.com/badge/github/sergiogomes/angular-calendar-app.svg)](https://wakatime.com/badge/github/sergiogomes/angular-calendar-app)
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/0b0338a8-379a-4b74-a06c-cb85aae8629c/deploy-status)](https://app.netlify.com/sites/angular-calendar-app/deploys)
+
 ## Mandatory Features
 
 - [x] Ability to add a new "reminder" (max 30 chars) for a user entered day and time. Also, include a city.
