@@ -14,20 +14,21 @@
 </ul>
 
 <ul class="list-group list-group-horizontal flex-wrap justify-center">
-  <li class="list-group-item perc-14 text-center grid-height btn btn-light"
+  <li class="list-group-item perc-14 grid-height btn btn-light list-padding"
     *ngFor="let day of service.grid"
     (click)="selectDay(day)"
     [ngClass]="getClass(day)"
     >
-    <div *ngIf="day.monthDay" [ngClass]="day.monthDay === service.currentDay ? 'current-day' : ''">
+    <div *ngIf="day.monthDay" class="text-right"
+      [ngClass]="day.monthDay === service.currentDay ? 'current-day' : ''">
       {{ day.monthDay }}
     </div>
-    <div *ngFor="let info of day.events" class="d-flex">
+    <div *ngFor="let info of day.events" class="d-flex text-left justify-between">
       <span>
         <div [ngStyle]="{'background-color': info.color ? info.color : 'white' }" class="circle"></div>
       </span>
-      <span>{{ info.title }}</span>
-      <span>{{ info.hour }}</span>
+      <span class="info">{{ info.title }}</span>
+      <span class="info text-muted text-right min-w-30 ml-1">{{ info.hour }}</span>
     </div>
   </li>
 </ul>

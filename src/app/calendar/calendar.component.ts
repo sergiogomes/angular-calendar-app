@@ -80,6 +80,22 @@ export class CalendarComponent implements OnInit, OnDestroy {
       }
       if (countBegan) {
         item.monthDay = dayCount + 1;
+        item.events = [{
+          title: 'Interview',
+          color: 'lightblue',
+          description: 'test',
+          hour: '09:30',
+          monthDay: item.monthDay,
+          id: 20201126010000
+        }, {
+          title: 'Second Interview',
+          color: 'coral',
+          description: 'test',
+          hour: '02:30',
+          monthDay: item.monthDay,
+          id: 20201126011000
+        },
+      ];
         dayCount ++;
       }
       if (dayCount > monthDays) {

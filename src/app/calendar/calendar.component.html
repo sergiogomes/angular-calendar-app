@@ -2,20 +2,13 @@
 
 <div class="row">
   <div [class]="sideBarOpened ? 'col-sm-12 col-md-3 col-lg-3 col-xl-3' : 'd-none'">
-    <button type="button" class="close" aria-label="Close" (click)="closeSideBar()">
+    <button type="button" class="close mb-4" aria-label="Close" (click)="closeSideBar()">
       <span aria-hidden="true">&times;</span>
     </button>
-  </div>
-  <div [class]="sideBarOpened ? 'col-sm-12 col-md-9 col-lg-9 col-xl-9' : 'col-12'">
-    <h2>{{ service.months[service.currentMonth] }} {{ service.currentYear }}</h2>
-  </div>
-</div>
-
-<div class="row">
-  <div [class]="sideBarOpened ? 'col-sm-12 col-md-3 col-lg-3 col-xl-3' : 'd-none'">
     <app-info></app-info>
   </div>
   <div [class]="sideBarOpened ? 'col-sm-12 col-md-9 col-lg-9 col-xl-9' : 'col-12'">
+    <h2>{{ service.months[service.currentMonth] }} {{ service.currentYear }}</h2>
     <app-grid></app-grid>
   </div>
 </div>

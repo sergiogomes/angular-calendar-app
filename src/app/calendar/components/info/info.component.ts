@@ -41,6 +41,7 @@ export class InfoComponent implements OnInit, OnDestroy {
         this.showInfo = true;
       } else {
         this.showInfo = false;
+        this.showForm = false;
         this.info = new ItemGrid();
       }
     });

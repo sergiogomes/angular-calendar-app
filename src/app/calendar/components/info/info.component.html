@@ -5,50 +5,52 @@
     </button>
   </ng-container>
   <ng-container *ngIf="showForm">
-    <form [formGroup]="infoForm" (submit)="create($event)">
-      <div class="form-group">
-        <label for="title">Title</label>
-        <input
-          formControlName="title"
-          type="text"
-          class="form-control"
-          id="title"
-          name="title"
-          placeholder="Event title"
-          required />
-      </div>
-      <div class="form-group">
-        <label for="hour">Time</label>
-        <input
-          formControlName="hour"
-          type="time"
-          class="form-control"
-          id="hour"
-          name="hour"
-          min="01:00"
-          max="12:00"
-          required />
-      </div>
-      <div class="form-group">
-        <label for="color">Color</label>
-        <input
-          formControlName="color"
-          type="color"
-          class="form-control"
-          id="color"
-          name="color" />
-      </div>
-      <div class="form-group">
-        <label for="description">Description</label>
-        <textarea
-          formControlName="description"
-          class="form-control"
-          id="description"
-          name="description"
-          rows="3">
-        </textarea>
-      </div>
-      <button type="submit" class="btn btn-info btn-block">Save</button>
-    </form>
+    <section class="mt-5">
+      <form [formGroup]="infoForm" (submit)="create($event)">
+        <div class="form-group">
+          <label for="title">Title</label>
+          <input
+            formControlName="title"
+            type="text"
+            class="form-control"
+            id="title"
+            name="title"
+            placeholder="Event title"
+            required />
+        </div>
+        <div class="form-group">
+          <label for="hour">Time</label>
+          <input
+            formControlName="hour"
+            type="time"
+            class="form-control"
+            id="hour"
+            name="hour"
+            min="01:00"
+            max="12:00"
+            required />
+        </div>
+        <div class="form-group">
+          <label for="color">Color</label>
+          <input
+            formControlName="color"
+            type="color"
+            class="form-control"
+            id="color"
+            name="color" />
+        </div>
+        <div class="form-group">
+          <label for="description">Description</label>
+          <textarea
+            formControlName="description"
+            class="form-control"
+            id="description"
+            name="description"
+            rows="3">
+          </textarea>
+        </div>
+        <button type="submit" class="btn btn-info btn-block">Save</button>
+      </form>
+    </section>
   </ng-container>
 </ng-container>
