@@ -12,6 +12,8 @@ import { ItemGrid } from '../../models';
 export class InfoComponent implements OnInit, OnDestroy {
 
   public info = new ItemGrid();
+  public showInfo: boolean;
+  public showForm: boolean;
 
   private calendarSub: Subscription;
 
@@ -19,13 +21,19 @@ export class InfoComponent implements OnInit, OnDestroy {
     this.calendarSub = this.service.eventcalendarChanged.subscribe((item: ItemGrid) => {
       if (item) {
         this.info = item;
+        this.showInfo = true;
       } else {
+        this.showInfo = false;
         this.info = new ItemGrid();
       }
     });
   }
 
   ngOnInit(): void {
+  }
+  
+  public addInfo(): void {
+    this.showForm = true;
   }
 
   ngOnDestroy(): void {
