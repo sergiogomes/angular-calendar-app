@@ -79,4 +79,28 @@ export class CalendarService {
       this.grid[gridIndex].events.push(infoEvent);
     }
   }
+
+  public updateEvent(infoEvent: Info): void {
+    const gridIndex = this.grid.findIndex((grid) => grid.monthDay === infoEvent.monthDay);
+    if (gridIndex > -1) {
+      const eventIndex = this.grid[gridIndex].events.findIndex((info) => info.id === infoEvent.id);
+      if (eventIndex > -1) {
+        this.grid[gridIndex].events[eventIndex].title = infoEvent.title;
+        this.grid[gridIndex].events[eventIndex].description = infoEvent.description;
+        this.grid[gridIndex].events[eventIndex].hour = infoEvent.hour;
+        this.grid[gridIndex].events[eventIndex].color = infoEvent.color;
+        this.grid[gridIndex].events[eventIndex].monthDay = infoEvent.monthDay;
+      }
+    }
+  }
+
+  public deleteEvent(infoEvent: Info): void {
+    const gridIndex = this.grid.findIndex((grid) => grid.monthDay === infoEvent.monthDay);
+    if (gridIndex > -1) {
+      const eventIndex = this.grid[gridIndex].events.findIndex((info) => info.id === infoEvent.id);
+      if (eventIndex > -1) {
+        this.grid[gridIndex].events.splice(eventIndex, 1);
+      }
+    }
+  }
 }
