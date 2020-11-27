@@ -9,12 +9,12 @@
     <section *ngFor="let item of info.events">
       <div class="card my-2">
         <div class="card-body">
-          <h5 class="card-title">{{ item.title }}</h5>
+          <p class="card-title">{{ item.title }}</p>
           <div class="row">
-            <div class="col-6 d-grid">
+            <div class="col-2 d-grid">
               <div [ngStyle]="{'background-color': item.color ? item.color : 'white' }" class="color"></div>
             </div>
-            <div class="col-6">{{ item.hour }}</div>
+            <div class="col-10">{{ item.hour }}</div>
           </div>
           <p class="card-text">{{ item.description }}</p>
           <div class="text-right">
@@ -45,6 +45,16 @@
             name="title"
             placeholder="Event title"
             required />
+            <!-- maxLength="30" -->
+            <div class="alert alert-danger" role="alert"
+              *ngIf="infoForm.controls.title.touched && infoForm.controls.title.errors?.required">
+              Title is required.
+            </div> 
+            <div class="alert alert-danger" role="alert"
+              *ngIf="infoForm.controls.title.touched && infoForm.controls.title.errors?.maxlength">
+              Title can be max 30 characters long. ({{ infoForm.controls.title.errors?.maxlength?.actualLength }}/{{ infoForm.controls.title.errors?.maxlength?.requiredLength }})
+            </div> 
+            <!-- <small>{{ infoForm.controls.title.value.length }} / 30</small> -->
         </div>
         <div class="form-group">
           <label for="hour">Time</label>

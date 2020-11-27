@@ -74,6 +74,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   private fillMonthDays(weekFirstDay: number, monthDays: number): void {
     let countBegan: boolean;
     let dayCount = weekFirstDay;
+    let id = this.service.getIdByDate(new Date());
     for (const item of this.service.grid) {
       if (dayCount === weekFirstDay) {
         countBegan = true;
@@ -86,14 +87,14 @@ export class CalendarComponent implements OnInit, OnDestroy {
           description: 'Interview description.',
           hour: '09:30',
           monthDay: item.monthDay,
-          id: 20201126010000
+          id: id ++
         }, {
           title: 'Second Interview',
           color: 'coral',
           description: '',
           hour: '02:30',
           monthDay: item.monthDay,
-          id: 20201126011000
+          id: id ++
         },
       ];
         dayCount ++;
@@ -107,7 +108,6 @@ export class CalendarComponent implements OnInit, OnDestroy {
   public closeSideBar(): void {
     this.service.calendar$.next(false);
     this.service.selectedDay = undefined;
-    this.sideBarOpened = false;
   }
 
   ngOnDestroy(): void {

@@ -1,7 +1,27 @@
 .color {
-  border-radius: 5px;
+  border-radius: 50%;
+  height: 19px;
+  width: 19px;
 }
 
 .d-grid {
   display: grid;
+}
+
+form {
+  font-size: small;
+  .form-group {
+    .alert {
+      padding: 0.3rem 0.7rem;
+    }
+  }
+}
+
+.card {
+  font-size: small;
+
+  .card-title{
+    font-size: medium;
+    font-weight: 600;
+  }
 }

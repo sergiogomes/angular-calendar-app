@@ -62,6 +62,11 @@
   display: grid;
 }
 
+.info-title {
+  width: 100%;
+  text-align: left;
+}
+
 .grid-height {
   min-height: 50px;
 }
@@ -76,11 +81,14 @@
   display: none
 }
 
+.info-title-md, .info-title-lg {
+  display: none
+}
+
 .current-day {
   background-color: mediumturquoise;
   min-width: 20px;
   border-radius: 4px;
-  margin: 0px 0px;
 }
 
 /* Responsive Styles */
@@ -99,9 +107,12 @@
     display: none
   }
 
+  .info-title-md {
+    display: block
+  }
+
   .current-day {
     border-radius: 4px;
-    margin: 0px 0px;
   }
 }
 
@@ -120,15 +131,18 @@
     display: block
   }
 
+  .info-title-lg {
+    display: block
+  }
+
   .current-day {
     border-radius: 8px;
-    margin: 0px 25px;
   }
 }
 
-@media screen and (max-width: 300) {
+@media screen and (max-width: 450px) {
   .list-group-item {
-    padding: unset;
+    padding: 1px;
     margin: unset;
   }
 }

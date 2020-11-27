@@ -19,7 +19,7 @@ export class InfoComponent implements OnInit, OnDestroy {
 
   public infoForm: FormGroup;
   public infoFbGroup = {
-    title: new FormControl('', Validators.required),
+    title: new FormControl('', [Validators.required, Validators.maxLength(30)]),
     hour: new FormControl('', Validators.required),
     color: new FormControl(''),
     description: new FormControl(''),
@@ -57,7 +57,14 @@ export class InfoComponent implements OnInit, OnDestroy {
   public create($event: HTMLFormElement): void {
     $event.preventDefault();
 
-    if (!this.infoForm.valid) { return; }
+
+
+    if (!this.infoForm.valid) {
+      Object.keys(this.infoForm.controls).forEach(key => {
+        this.infoForm.controls[key].markAsTouched();
+      });
+      return;
+    }
 
     if (this.state === 1) {
       const id = this.service.getIdByDate(new Date());
