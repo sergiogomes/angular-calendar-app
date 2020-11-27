@@ -85,14 +85,14 @@ export class CalendarComponent implements OnInit, OnDestroy {
           title: 'Interview',
           color: 'lightblue',
           description: 'Interview description.',
-          hour: '09:30',
+          time: '09:30',
           monthDay: item.monthDay,
           id: id ++
         }, {
           title: 'Second Interview',
           color: 'coral',
           description: '',
-          hour: '02:30',
+          time: '02:30',
           monthDay: item.monthDay,
           id: id ++
         },

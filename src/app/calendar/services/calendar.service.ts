@@ -13,7 +13,7 @@ export class CalendarService {
   public currentYear: number;
   public currentMonth: number;
   public currentDay: number;
-  public currentHour: number;
+  public currenttime: number;
 
   public weekDays = [
     { id: 0, letter: 'S', threeWord: 'Sun', day: 'Sunday' },
@@ -87,7 +87,7 @@ export class CalendarService {
       if (eventIndex > -1) {
         this.grid[gridIndex].events[eventIndex].title = infoEvent.title;
         this.grid[gridIndex].events[eventIndex].description = infoEvent.description;
-        this.grid[gridIndex].events[eventIndex].hour = infoEvent.hour;
+        this.grid[gridIndex].events[eventIndex].time = infoEvent.time;
         this.grid[gridIndex].events[eventIndex].color = infoEvent.color;
         this.grid[gridIndex].events[eventIndex].monthDay = infoEvent.monthDay;
       }

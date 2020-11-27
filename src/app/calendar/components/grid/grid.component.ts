@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 
 import { CalendarService } from '../../services';
 import { ItemGrid } from '../../models';
-import { stringify } from 'querystring';
+import { handleTime, sortByTime } from '../../../core';
 
 @Component({
   selector: 'app-grid',
@@ -22,4 +22,11 @@ export class GridComponent {
     return day.monthDay === this.service.selectedDay ? 'selected-day' : '';
   }
 
+  public handleTime(time: string): string {
+    return handleTime(time);
+  }
+
+  public sortByTime(data: ItemGrid[]): ItemGrid[] {
+    return sortByTime(data);
+  }
 }

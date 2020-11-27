@@ -4,6 +4,7 @@ import { Subscription } from 'rxjs/internal/Subscription';
 
 import { CalendarService } from '../../services';
 import { FormState, Info, ItemGrid } from '../../models';
+import { handleTime, sortByTime } from '../../../core';
 
 @Component({
   selector: 'app-info',
@@ -20,7 +21,7 @@ export class InfoComponent implements OnInit, OnDestroy {
   public infoForm: FormGroup;
   public infoFbGroup = {
     title: new FormControl('', [Validators.required, Validators.maxLength(30)]),
-    hour: new FormControl('', Validators.required),
+    time: new FormControl('', Validators.required),
     color: new FormControl(''),
     description: new FormControl(''),
     id: new FormControl(''),
@@ -49,6 +50,14 @@ export class InfoComponent implements OnInit, OnDestroy {
     });
   }
 
+  public handleTime(time: string): string {
+    return handleTime(time, true);
+  }
+
+  public sortByTime(data: ItemGrid[]): ItemGrid[] {
+    return sortByTime(data);
+  }
+
   public addInfo(): void {
     this.showForm = true;
     this.state = 1;
@@ -56,8 +65,6 @@ export class InfoComponent implements OnInit, OnDestroy {
 
   public create($event: HTMLFormElement): void {
     $event.preventDefault();
-
-
 
     if (!this.infoForm.valid) {
       Object.keys(this.infoForm.controls).forEach(key => {
@@ -89,7 +96,7 @@ export class InfoComponent implements OnInit, OnDestroy {
     this.infoForm.patchValue({
       id: item.id,
       title: item.title,
-      hour: item.hour,
+      time: item.time,
       description: item.description,
       monthDay: item.monthDay
     });

@@ -24,12 +24,12 @@
         {{ day.monthDay }}
       </div>
     </div>
-    <div *ngFor="let info of day.events" class="d-flex text-left justify-between">
+    <div *ngFor="let info of sortByTime(day.events)" class="d-flex text-left justify-between">
       <span>
-        <div [ngStyle]="{'background-color': info.color ? info.color : 'white' }" class="circle"></div>
+        <div [ngStyle]="{'background-color': info.color ? info.color : 'black' }" class="circle"></div>
       </span>
       <span class="info info-title info-title-md info-title-lg">{{ info.title }}</span>
-      <span class="info text-muted text-right min-w-30 ml-1">{{ info.hour }}</span>
+      <span class="info text-muted text-right min-w-30 ml-1">{{ handleTime(info.time) }}</span>
     </div>
   </li>
 </ul>

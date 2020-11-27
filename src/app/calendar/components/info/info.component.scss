@@ -20,6 +20,10 @@ form {
 .card {
   font-size: small;
 
+  .card-body {
+    padding: 0.5rem;
+  }
+
   .card-title{
     font-size: medium;
     font-weight: 600;

@@ -1,6 +1,6 @@
 export class Info {
   title: string;
-  hour: string;
+  time: string;
   color: string;
   description: string;
   id: number;

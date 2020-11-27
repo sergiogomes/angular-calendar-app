@@ -6,15 +6,15 @@
       New Event
     </button>
 
-    <section *ngFor="let item of info.events">
+    <section *ngFor="let item of sortByTime(info.events)">
       <div class="card my-2">
         <div class="card-body">
           <p class="card-title">{{ item.title }}</p>
           <div class="row">
             <div class="col-2 d-grid">
-              <div [ngStyle]="{'background-color': item.color ? item.color : 'white' }" class="color"></div>
+              <div [ngStyle]="{'background-color': item.color ? item.color : 'black' }" class="color"></div>
             </div>
-            <div class="col-10">{{ item.hour }}</div>
+            <div class="col-10">{{ handleTime(item.time) }}</div>
           </div>
           <p class="card-text">{{ item.description }}</p>
           <div class="text-right">
@@ -35,6 +35,7 @@
 
     <section class="mt-5">
       <form [formGroup]="infoForm" (submit)="create($event)">
+
         <div class="form-group">
           <label for="title">Title</label>
           <input
@@ -45,29 +46,31 @@
             name="title"
             placeholder="Event title"
             required />
-            <!-- maxLength="30" -->
-            <div class="alert alert-danger" role="alert"
-              *ngIf="infoForm.controls.title.touched && infoForm.controls.title.errors?.required">
-              Title is required.
-            </div> 
-            <div class="alert alert-danger" role="alert"
-              *ngIf="infoForm.controls.title.touched && infoForm.controls.title.errors?.maxlength">
-              Title can be max 30 characters long. ({{ infoForm.controls.title.errors?.maxlength?.actualLength }}/{{ infoForm.controls.title.errors?.maxlength?.requiredLength }})
-            </div> 
-            <!-- <small>{{ infoForm.controls.title.value.length }} / 30</small> -->
+          <div class="alert alert-danger" role="alert"
+            *ngIf="infoForm.controls.title.touched && infoForm.controls.title.errors?.required">
+            Title is required.
+          </div> 
+          <div class="alert alert-danger" role="alert"
+            *ngIf="infoForm.controls.title.touched && infoForm.controls.title.errors?.maxlength">
+            Title can be max 30 characters long. ({{ infoForm.controls.title.errors?.maxlength?.actualLength }}/{{ infoForm.controls.title.errors?.maxlength?.requiredLength }})
+          </div> 
         </div>
+
         <div class="form-group">
-          <label for="hour">Time</label>
+          <label for="time">Time</label>
           <input
-            formControlName="hour"
+            formControlName="time"
             type="time"
             class="form-control"
-            id="hour"
-            name="hour"
-            min="01:00"
-            max="12:00"
+            id="time"
+            name="time"
             required />
+          <div class="alert alert-danger" role="alert"
+            *ngIf="infoForm.controls.time.touched && infoForm.controls.time.errors?.required">
+            Time is required.
+          </div> 
         </div>
+
         <div class="form-group">
           <label for="color">Color</label>
           <input
@@ -77,6 +80,7 @@
             id="color"
             name="color" />
         </div>
+
         <div class="form-group">
           <label for="description">Description</label>
           <textarea
@@ -87,6 +91,7 @@
             rows="3">
           </textarea>
         </div>
+
         <button type="submit" class="btn btn-info btn-block">Save</button>
       </form>
     </section>
