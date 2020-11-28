@@ -67,6 +67,7 @@ export class InfoComponent implements OnInit, OnDestroy {
   public addInfo(): void {
     this.showForm = true;
     this.state = 1;
+    this.infoForm.patchValue({ monthDay: this.info.monthDay });
   }
 
   public create($event?: HTMLFormElement): void {
