@@ -16,7 +16,7 @@ export class InfoComponent implements OnInit, OnDestroy {
   public info = new ItemGrid();
   public showInfo: boolean;
   public showForm: boolean;
-  private state: FormState;
+  public state: FormState;
 
   public infoForm: FormGroup;
   public infoFbGroup = {
@@ -69,8 +69,8 @@ export class InfoComponent implements OnInit, OnDestroy {
     this.state = 1;
   }
 
-  public create($event: HTMLFormElement): void {
-    $event.preventDefault();
+  public create($event?: HTMLFormElement): void {
+    $event?.preventDefault();
 
     if (!this.infoForm.valid) {
       Object.keys(this.infoForm.controls).forEach(key => {
