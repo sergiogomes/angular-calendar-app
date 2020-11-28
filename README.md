@@ -18,8 +18,8 @@ Angular Calendar App.
 ## Bonus (Optional)
 
 - [ ] Expand the calendar to support more than the current month.
-- [ ] Properly handle overflow when multiple reminders appear on the same date.
-- [ ] Functionality to delete one or ALL the reminders for a specific day.
+- [x] Properly handle overflow when multiple reminders appear on the same date.
+- [x] Functionality to delete one or ALL the reminders for a specific day.
 
 ## Angular CLI
 

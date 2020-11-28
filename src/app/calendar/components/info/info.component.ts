@@ -95,6 +95,10 @@ export class InfoComponent implements OnInit, OnDestroy {
     this.service.deleteEvent(item);
   }
 
+  public deleteAllEvents(): void {
+    this.service.deleteAllDayEvents(this.service.selectedDay);
+  }
+
   public edit(item: Info): void {
     this.showForm = true;
     this.state = 2;

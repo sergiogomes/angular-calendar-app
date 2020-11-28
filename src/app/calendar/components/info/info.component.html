@@ -2,8 +2,14 @@
 
   <ng-container *ngIf="!showForm">
 
-    <button type="button" class="btn btn-sm btn-info btn-block mb-4" (click)="addInfo()">
+    <button type="button" class="btn btn-sm btn-info btn-block mb-2" (click)="addInfo()">
       New Event
+    </button>
+
+    <button type="button" class="btn btn-sm btn-danger btn-block mb-4"
+      [disabled]="info.events.length === 0"
+      (click)="deleteAllEvents()">
+      Delete All Events
     </button>
 
     <section *ngFor="let item of sortByTime(info.events)">

@@ -116,6 +116,13 @@ export class CalendarService {
     }
   }
 
+  public deleteAllDayEvents(day: number): void {
+    const gridIndex = this.grid.findIndex((grid) => grid.monthDay === day);
+    if (gridIndex > -1) {
+      this.grid[gridIndex].events = new Array<Info>();
+    }
+  }
+
   public async getWeatherData(city: string): Promise<WeatherAPI> {
     return await this.base.get(`/data/2.5/weather?q=${city}`);
   }
