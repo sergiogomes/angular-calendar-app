@@ -20,12 +20,13 @@ export class InfoComponent implements OnInit, OnDestroy {
 
   public infoForm: FormGroup;
   public infoFbGroup = {
-    title: new FormControl('', [Validators.required, Validators.maxLength(30)]),
+    id: new FormControl(''),
     time: new FormControl('', Validators.required),
+    monthDay: new FormControl('', Validators.required),
+    title: new FormControl('', [ Validators.required, Validators.maxLength(30) ]),
     color: new FormControl(''),
     description: new FormControl(''),
-    id: new FormControl(''),
-    monthDay: new FormControl('')
+    city: new FormControl('', Validators.maxLength(30))
   };
 
   private calendarSub: Subscription;
@@ -38,8 +39,9 @@ export class InfoComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.infoForm = this.formBuilder.group(this.infoFbGroup);
     this.calendarSub = this.service.eventcalendarChanged.subscribe((item: ItemGrid) => {
-      if (item) {
+      if (item && item.monthDay) {
         this.info = item;
+        this.infoForm.patchValue({ monthDay: item.monthDay });
         this.showInfo = true;
       } else {
         this.showInfo = false;
@@ -56,6 +58,10 @@ export class InfoComponent implements OnInit, OnDestroy {
 
   public sortByTime(data: ItemGrid[]): ItemGrid[] {
     return sortByTime(data);
+  }
+
+  public filterMonthDays(data: ItemGrid[]): ItemGrid[] {
+    return data.filter((grid) => grid.monthDay);
   }
 
   public addInfo(): void {
@@ -75,8 +81,7 @@ export class InfoComponent implements OnInit, OnDestroy {
 
     if (this.state === 1) {
       const id = this.service.getIdByDate(new Date());
-      const monthDay = this.info.monthDay;
-      this.infoForm.patchValue({ id, monthDay });
+      this.infoForm.patchValue({ id });
       this.service.createEvent(this.infoForm.value);
     } else {
       this.service.updateEvent(this.infoForm.value);
@@ -98,7 +103,9 @@ export class InfoComponent implements OnInit, OnDestroy {
       title: item.title,
       time: item.time,
       description: item.description,
-      monthDay: item.monthDay
+      monthDay: item.monthDay,
+      city: item.city,
+      color: item.color
     });
   }
 

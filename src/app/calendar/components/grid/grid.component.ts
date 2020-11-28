@@ -19,6 +19,7 @@ export class GridComponent {
   }
 
   public getClass(day: ItemGrid): string {
+    if (!day.monthDay) { return ''; }
     return day.monthDay === this.service.selectedDay ? 'selected-day' : '';
   }
 

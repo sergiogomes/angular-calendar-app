@@ -20,7 +20,7 @@ export class CalendarComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.initializeDates();
     this.calendarSub = this.service.eventcalendarChanged.subscribe((item: ItemGrid) => {
-      if (item) {
+      if (item && item.monthDay) {
         this.sideBarOpened = true;
       } else {
         this.sideBarOpened = false;
@@ -83,15 +83,17 @@ export class CalendarComponent implements OnInit, OnDestroy {
         item.monthDay = dayCount + 1;
         item.events = [{
           title: 'Interview',
-          color: 'lightblue',
+          color: '#add8e6',
           description: 'Interview description.',
+          city: '',
           time: '09:30',
           monthDay: item.monthDay,
           id: id ++
         }, {
           title: 'Second Interview',
-          color: 'coral',
+          color: '#ff7f50',
           description: '',
+          city: '',
           time: '02:30',
           monthDay: item.monthDay,
           id: id ++

@@ -90,6 +90,7 @@ export class CalendarService {
         this.grid[gridIndex].events[eventIndex].time = infoEvent.time;
         this.grid[gridIndex].events[eventIndex].color = infoEvent.color;
         this.grid[gridIndex].events[eventIndex].monthDay = infoEvent.monthDay;
+        this.grid[gridIndex].events[eventIndex].city = infoEvent.city;
       }
     }
   }
