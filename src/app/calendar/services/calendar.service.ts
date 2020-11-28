@@ -2,7 +2,8 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/internal/Observable';
 import { Subject } from 'rxjs/internal/Subject';
 
-import { Info, ItemGrid } from '../models';
+import { Info, ItemGrid, WeatherAPI } from '../models';
+import { BaseService } from 'src/app/core/services';
 
 @Injectable({
   providedIn: 'root'
@@ -46,7 +47,7 @@ export class CalendarService {
     return this.calendar$.asObservable();
   }
 
-  constructor() { }
+  constructor(private base: BaseService) { }
 
   public getDaysInMonth(month: number, year: number): number {
     return new Date(year, month + 1, 0).getDate();
@@ -95,6 +96,16 @@ export class CalendarService {
     }
   }
 
+  public updateEventWeather(infoEvent: Info): void {
+    const gridIndex = this.grid.findIndex((grid) => grid.monthDay === infoEvent.monthDay);
+    if (gridIndex > -1) {
+      const eventIndex = this.grid[gridIndex].events.findIndex((info) => info.id === infoEvent.id);
+      if (eventIndex > -1) {
+        this.grid[gridIndex].events[eventIndex].weather = infoEvent.weather;
+      }
+    }
+  }
+
   public deleteEvent(infoEvent: Info): void {
     const gridIndex = this.grid.findIndex((grid) => grid.monthDay === infoEvent.monthDay);
     if (gridIndex > -1) {
@@ -103,5 +114,9 @@ export class CalendarService {
         this.grid[gridIndex].events.splice(eventIndex, 1);
       }
     }
+  }
+
+  public async getWeatherData(city: string): Promise<WeatherAPI> {
+    return await this.base.get(`/data/2.5/weather?q=${city}`);
   }
 }

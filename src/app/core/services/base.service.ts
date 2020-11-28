@@ -10,7 +10,7 @@ import { Observable } from 'rxjs/internal/Observable';
 })
 export class BaseService {
 
-  private API_KEY = `&apiKey=${environment.apiKey}`;
+  private API_KEY = `&APPID=${environment.apiKey}`;
 
   public loading$: Subject<boolean> = new Subject<boolean>();
   get eventLoadingChanged(): Observable<any> {

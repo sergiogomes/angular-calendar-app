@@ -3,7 +3,7 @@ import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms'
 import { Subscription } from 'rxjs/internal/Subscription';
 
 import { CalendarService } from '../../services';
-import { FormState, Info, ItemGrid } from '../../models';
+import { FormState, Info, ItemGrid, WeatherAPI } from '../../models';
 import { handleTime, sortByTime } from '../../../core';
 
 @Component({
@@ -106,6 +106,15 @@ export class InfoComponent implements OnInit, OnDestroy {
       monthDay: item.monthDay,
       city: item.city,
       color: item.color
+    });
+  }
+
+  public checkWeather(item: Info): void {
+    const city = item.city.replace(/ /g, '%20');
+    this.service.getWeatherData(city).then((answer: WeatherAPI) => {
+      item.success = true;
+      item.weather = answer;
+      this.service.updateEventWeather(item);
     });
   }
 
