@@ -119,7 +119,13 @@ export class InfoComponent implements OnInit, OnDestroy {
     this.service.getWeatherData(city).then((answer: WeatherAPI) => {
       item.success = true;
       item.weather = answer;
+      item.error = '';
       this.service.updateEventWeather(item);
+    }, (e) => {
+      if (e && e.error && e.error.message) {
+        item.error = e.error.message;
+        this.service.updateEventWeather(item);
+      }
     });
   }
 
